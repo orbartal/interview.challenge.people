@@ -33,5 +33,12 @@ public class PersonServiceTest {
 		// verify
 		Assert.assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void testCreate() throws Exception {
+		Person persone1 = new PersonBuilder().withId(768L).build();
+		personeService.create(persone1);
+		Mockito.verify(personeDaoService).create(persone1);
+	}
 
 }

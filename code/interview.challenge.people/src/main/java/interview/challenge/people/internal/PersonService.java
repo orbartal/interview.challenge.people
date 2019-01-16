@@ -16,5 +16,9 @@ public class PersonService {
 	public List<Person> getAll() {
 		return personeDaoService.getAll();
 	}
+	
+	public void create(Person person) {
+		personeDaoService.create(person);;
+	}
 
 }
