@@ -2,3 +2,6 @@
 .settings
 .classpath
 target
+/code/interview.challenge.people/src/main/resources/static/package-lock.json
+/code/interview.challenge.people/src/main/resources/static/node_modules
+/code/interview.challenge.people/src/main/resources/static/app/lib
