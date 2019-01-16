@@ -18,7 +18,7 @@ public class PersonServiceTest {
 	private IPersonDaoService personeDaoService;
 
 	@InjectMocks
-	private PersonService personeService;
+	private PersonService fixture;
 
 	@Test
 	public void testGetAll() throws Exception {
@@ -29,7 +29,7 @@ public class PersonServiceTest {
 		List<Person> expected = Lists.newArrayList(persone1, persone2, persone3);
 		Mockito.when(personeDaoService.getAll()).thenReturn(expected);
 		// execute
-		List<Person> actual = personeService.getAll();
+		List<Person> actual = fixture.getAll();
 		// verify
 		Assert.assertEquals(expected, actual);
 	}
@@ -37,9 +37,16 @@ public class PersonServiceTest {
 	@Test
 	public void testCreate() throws Exception {
 		Person persone1 = new PersonBuilder().withId(768L).build();
-		personeService.create(persone1);
+		fixture.create(persone1);
 		Assert.assertNull(persone1.getId());
 		Mockito.verify(personeDaoService).create(persone1);
+	}
+	
+	@Test
+	public void testDelete() throws Exception {
+		Long id = 11L;
+		fixture.delete(id);
+		Mockito.verify(personeDaoService).delete(id);
 	}
 
 }
