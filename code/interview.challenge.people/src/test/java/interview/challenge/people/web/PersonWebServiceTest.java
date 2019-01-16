@@ -28,7 +28,7 @@ public class PersonWebServiceTest {
 	private ConverterPersonDtoToPerson converterPersonDtoToPerson;
 
 	@InjectMocks
-	private PersonWebService fixure;
+	private PersonWebService fixture;
 
 	@Test
 	public void testGetAll() throws Exception {
@@ -47,7 +47,7 @@ public class PersonWebServiceTest {
 			Mockito.when(converterPersonToPersonDto.convert(people.get(i))).thenReturn(expected.get(i));
 		}
 		// execute
-		List<PersonDto> actual = fixure.getAll();
+		List<PersonDto> actual = fixture.getAll();
 		// verify
 		Assert.assertEquals(expected, actual);
 		Mockito.verify(personeService).getAll();
@@ -68,7 +68,7 @@ public class PersonWebServiceTest {
 				.build();
 		Mockito.when(converterPersonDtoToPerson.convert(input)).thenReturn(person);
 		// execute
-		fixure.create(input);
+		fixture.create(input);
 		// verify
 		Mockito.verify(converterPersonDtoToPerson).convert(input);
 		Mockito.verify(personeService).create(person);
@@ -77,7 +77,7 @@ public class PersonWebServiceTest {
 	@Test
 	public void testDelete() throws Exception {
 		Long id = 11L;
-		fixure.delete(id);
+		fixture.delete(id);
 		Mockito.verify(personeService).delete(id);
 	}
 

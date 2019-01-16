@@ -29,7 +29,7 @@ public class PersonDaoServiceTest {
 	private ConverterPersonToPersonEntity converterPersonToPersonEntity;
 
 	@InjectMocks
-	private PersonDaoService fixure;
+	private PersonDaoService fixture;
 	
 	@Test
 	public void testGetAll() throws Exception {
@@ -48,7 +48,7 @@ public class PersonDaoServiceTest {
 			Mockito.when(converterPersonEntityToPerson.convert(enities.get(i))).thenReturn(expected.get(i));
 		}
 		// execute
-		List<Person> actual = fixure.getAll();
+		List<Person> actual = fixture.getAll();
 		// verify
 		Assert.assertEquals(expected, actual);
 		Mockito.verify(personRepository).findAll();
@@ -68,7 +68,7 @@ public class PersonDaoServiceTest {
 		PersonEntity entity = new PersonEntityBuilder().withId(id).withAge(age).withFirstName(firstName).withLastName(lastName).build();
 		Mockito.when(converterPersonToPersonEntity.convert(input)).thenReturn(entity);
 		// execute
-		fixure.create(input);
+		fixture.create(input);
 		// verify
 		Mockito.verify(converterPersonToPersonEntity).convert(input);
 		Mockito.verify(personRepository).save(entity);
@@ -77,7 +77,7 @@ public class PersonDaoServiceTest {
 	@Test
 	public void testDelete() throws Exception {
 		Long id = 11L;
-		fixure.delete(id);
+		fixture.delete(id);
 		Mockito.verify(personRepository).delete(id);
 	}
 

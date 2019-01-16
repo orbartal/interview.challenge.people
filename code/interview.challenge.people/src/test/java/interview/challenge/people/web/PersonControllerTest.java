@@ -18,7 +18,7 @@ public class PersonControllerTest {
 	private PersonWebService personWebService;
 
 	@InjectMocks
-	private PersonController fixure;
+	private PersonController fixture;
 
 	@Test
 	public void testGetAll() throws Exception {
@@ -29,7 +29,7 @@ public class PersonControllerTest {
 		List<PersonDto> expected = Lists.newArrayList(persone1, persone2, persone3);
 		Mockito.when(personWebService.getAll()).thenReturn(expected);
 		// execute
-		List<PersonDto> actual = fixure.getAll();
+		List<PersonDto> actual = fixture.getAll();
 		// verify
 		Assert.assertEquals(expected, actual);
 	}
@@ -44,7 +44,7 @@ public class PersonControllerTest {
 		PersonDto input = new PersonDtoBuilder().withId(id).withAge(age).withFirstName(firstName).withLastName(lastName)
 				.build();
 		// execute
-		fixure.create(input);
+		fixture.create(input);
 		// verify
 		Mockito.verify(personWebService).create(input);
 	}
@@ -52,7 +52,7 @@ public class PersonControllerTest {
 	@Test
 	public void testDelete() throws Exception {
 		Long id = 11L;
-		fixure.delete(id);
+		fixture.delete(id);
 		Mockito.verify(personWebService).delete(id);
 	}
 

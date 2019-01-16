@@ -12,16 +12,16 @@ import interview.challenge.people.internal.PersonBuilder;
 @RunWith(MockitoJUnitRunner.class)
 public class ConverterPersonDtoToPersonTest {
 
-	private ConverterPersonDtoToPerson fixure;
+	private ConverterPersonDtoToPerson fixture;
 
 	@Before
 	public void setup() {
-		fixure = new ConverterPersonDtoToPerson();
+		fixture = new ConverterPersonDtoToPerson();
 	}
 
 	@Test
 	public void testConvertFromNull() throws Exception {
-		Assert.assertNull(fixure.convert(null));
+		Assert.assertNull(fixture.convert(null));
 	}
 
 	@Test
@@ -36,7 +36,7 @@ public class ConverterPersonDtoToPersonTest {
 		PersonDto input = new PersonDtoBuilder().withId(id).withAge(age).withFirstName(firstName).withLastName(lastName)
 				.build();
 		// execute
-		Person actual = fixure.convert(input);
+		Person actual = fixture.convert(input);
 		// verify
 		Assert.assertEquals(expected.getId(), actual.getId());
 		Assert.assertEquals(expected.getAge(), actual.getAge());
