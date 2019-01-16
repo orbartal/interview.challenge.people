@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-@Service("PersoneService")
-public class PersoneService {
+@Service("PersonService")
+public class PersonService {
 
-	final private IPersoneDaoService personeDaoService;
+	final private IPersonDaoService personeDaoService;
 
-	public PersoneService(IPersoneDaoService personeDaoService) {
+	public PersonService(IPersonDaoService personeDaoService) {
 		this.personeDaoService = personeDaoService;
 	}
 

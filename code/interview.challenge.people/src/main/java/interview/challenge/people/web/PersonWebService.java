@@ -6,17 +6,17 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import interview.challenge.people.internal.Person;
-import interview.challenge.people.internal.PersoneService;
+import interview.challenge.people.internal.PersonService;
 
 @Service("PersonWebService")
 public class PersonWebService {
 
-	private PersoneService personeService;
+	private PersonService personeService;
 	private ConverterPersonToPersonDto converterPersonToPersonDto;
 	
 	
 
-	public PersonWebService(PersoneService personeService, ConverterPersonToPersonDto converterPersonToPersonDto) {
+	public PersonWebService(PersonService personeService, ConverterPersonToPersonDto converterPersonToPersonDto) {
 		this.personeService = personeService;
 		this.converterPersonToPersonDto = converterPersonToPersonDto;
 	}

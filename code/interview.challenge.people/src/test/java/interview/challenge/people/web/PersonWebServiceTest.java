@@ -13,13 +13,13 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import interview.challenge.people.internal.Person;
 import interview.challenge.people.internal.PersonBuilder;
-import interview.challenge.people.internal.PersoneService;
+import interview.challenge.people.internal.PersonService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PersonWebServiceTest {
 
 	@Mock
-	private PersoneService personeService;
+	private PersonService personeService;
 
 	@Mock
 	private ConverterPersonToPersonDto converterPersonToPersonDto;

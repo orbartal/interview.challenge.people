@@ -12,13 +12,13 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class PersoneServiceTest {
+public class PersonServiceTest {
 
 	@Mock
-	private IPersoneDaoService personeDaoService;
+	private IPersonDaoService personeDaoService;
 
 	@InjectMocks
-	private PersoneService personeService;
+	private PersonService personeService;
 
 	@Test
 	public void testGetAll() throws Exception {

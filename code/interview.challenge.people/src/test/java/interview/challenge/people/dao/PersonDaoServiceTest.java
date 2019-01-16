@@ -11,13 +11,13 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import interview.challenge.people.internal.IPersoneDaoService;
+import interview.challenge.people.internal.IPersonDaoService;
 import interview.challenge.people.internal.Person;
 import interview.challenge.people.internal.PersonBuilder;
-import interview.challenge.people.internal.PersoneService;
+import interview.challenge.people.internal.PersonService;
 
 @RunWith(MockitoJUnitRunner.class)
-public class PersoneDaoServiceTest {
+public class PersonDaoServiceTest {
 	
 	@Mock
 	private PersonRepository personRepository;
@@ -26,7 +26,7 @@ public class PersoneDaoServiceTest {
 	private ConverterPersonEntityToPerson converterPersonEntityToPerson;
 
 	@InjectMocks
-	private PersoneDaoService fixure;
+	private PersonDaoService fixure;
 	
 	@Test
 	public void testGetAll() throws Exception {

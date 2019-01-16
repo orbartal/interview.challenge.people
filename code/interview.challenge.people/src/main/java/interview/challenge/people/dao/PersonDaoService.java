@@ -6,16 +6,16 @@ import java.util.stream.Collectors;
 import org.assertj.core.util.Lists;
 import org.springframework.stereotype.Service;
 
-import interview.challenge.people.internal.IPersoneDaoService;
+import interview.challenge.people.internal.IPersonDaoService;
 import interview.challenge.people.internal.Person;
 
-@Service("PersoneDaoService")
-public class PersoneDaoService implements IPersoneDaoService {
+@Service("PersonDaoService")
+public class PersonDaoService implements IPersonDaoService {
 
 	private PersonRepository personRepository;
 	private ConverterPersonEntityToPerson converterPersonEntityToPerson;
 
-	public PersoneDaoService(PersonRepository personRepository,
+	public PersonDaoService(PersonRepository personRepository,
 			ConverterPersonEntityToPerson converterPersonEntityToPerson) {
 		this.personRepository = personRepository;
 		this.converterPersonEntityToPerson = converterPersonEntityToPerson;
