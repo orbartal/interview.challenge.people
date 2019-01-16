@@ -14,11 +14,14 @@ public class PersonDaoService implements IPersonDaoService {
 
 	private PersonRepository personRepository;
 	private ConverterPersonEntityToPerson converterPersonEntityToPerson;
+	private ConverterPersonToPersonEntity converterPersonToPersonEntity;
 
 	public PersonDaoService(PersonRepository personRepository,
-			ConverterPersonEntityToPerson converterPersonEntityToPerson) {
+			ConverterPersonEntityToPerson converterPersonEntityToPerson,
+			ConverterPersonToPersonEntity converterPersonToPersonEntity) {
 		this.personRepository = personRepository;
 		this.converterPersonEntityToPerson = converterPersonEntityToPerson;
+		this.converterPersonToPersonEntity = converterPersonToPersonEntity;
 	}
 
 	@Override
@@ -26,9 +29,18 @@ public class PersonDaoService implements IPersonDaoService {
 		List<PersonEntity> entites = Lists.newArrayList(personRepository.findAll());
 		return entites.stream().map(this::toPerson).collect(Collectors.toList());
 	}
+	
+	public void create(Person person) {
+		PersonEntity entity = toPersonEntity(person);
+		personRepository.save(entity);
+	}
 
 	private Person toPerson(PersonEntity source) {
 		return converterPersonEntityToPerson.convert(source);
+	}
+	
+	private PersonEntity toPersonEntity(Person source) {
+		return converterPersonToPersonEntity.convert(source);
 	}
 
 }

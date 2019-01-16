@@ -24,6 +24,9 @@ public class PersonDaoServiceTest {
 
 	@Mock
 	private ConverterPersonEntityToPerson converterPersonEntityToPerson;
+	
+	@Mock
+	private ConverterPersonToPersonEntity converterPersonToPersonEntity;
 
 	@InjectMocks
 	private PersonDaoService fixure;
@@ -52,6 +55,23 @@ public class PersonDaoServiceTest {
 		for (int i=0; i<3; i++) {
 			Mockito.verify(converterPersonEntityToPerson).convert(enities.get(i));
 		}
+	}
+	
+	@Test
+	public void testCreate() throws Exception {
+		//setup
+		Long id = 976L;
+		String firstName = "Syed";
+		String lastName = "Saqib";
+		Integer age = 37;
+		Person input = new PersonBuilder().withAge(age).withFirstName(firstName).withLastName(lastName).build();
+		PersonEntity entity = new PersonEntityBuilder().withId(id).withAge(age).withFirstName(firstName).withLastName(lastName).build();
+		Mockito.when(converterPersonToPersonEntity.convert(input)).thenReturn(entity);
+		// execute
+		fixure.create(input);
+		// verify
+		Mockito.verify(converterPersonToPersonEntity).convert(input);
+		Mockito.verify(personRepository).save(entity);
 	}
 
 
