@@ -9,15 +9,14 @@ import org.mockito.runners.MockitoJUnitRunner;
 import interview.challenge.people.internal.Person;
 import interview.challenge.people.internal.PersonBuilder;
 
-
 @RunWith(MockitoJUnitRunner.class)
-public class ConverterPersonEntityToPersonTest {
+public class ConverterPersonToPersonEntityTest {
 
-	private ConverterPersonEntityToPerson fixure;
+	private ConverterPersonToPersonEntity fixure;
 
 	@Before
 	public void setup() {
-		fixure = new ConverterPersonEntityToPerson();
+		fixure = new ConverterPersonToPersonEntity();
 	}
 
 	@Test
@@ -32,12 +31,12 @@ public class ConverterPersonEntityToPersonTest {
 		String firstName = "Syed";
 		String lastName = "Saqib";
 		Integer age = 37;
-		Person expected = new PersonBuilder().withId(id).withAge(age).withFirstName(firstName).withLastName(lastName)
+		Person input = new PersonBuilder().withId(id).withAge(age).withFirstName(firstName).withLastName(lastName)
 				.build();
-		PersonEntity input = new PersonEntityBuilder().withId(id).withAge(age).withFirstName(firstName)
+		PersonEntity expected = new PersonEntityBuilder().withId(id).withAge(age).withFirstName(firstName)
 				.withLastName(lastName).build();
 		// execute
-		Person actual = fixure.convert(input);
+		PersonEntity actual = fixure.convert(input);
 		// verify
 		Assert.assertEquals(expected.getId(), actual.getId());
 		Assert.assertEquals(expected.getAge(), actual.getAge());
