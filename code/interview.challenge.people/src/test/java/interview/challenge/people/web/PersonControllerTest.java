@@ -48,5 +48,12 @@ public class PersonControllerTest {
 		// verify
 		Mockito.verify(personWebService).create(input);
 	}
+	
+	@Test
+	public void testDelete() throws Exception {
+		Long id = 11L;
+		fixure.delete(id);
+		Mockito.verify(personWebService).delete(id);
+	}
 
 }

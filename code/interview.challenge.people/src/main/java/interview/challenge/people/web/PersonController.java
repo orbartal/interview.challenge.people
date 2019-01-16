@@ -28,6 +28,11 @@ public class PersonController {
 	public void create(PersonDto input) {
 		personWebService.create(input);
 	}
+	
+	@RequestMapping(value = "/delete ", method = RequestMethod.DELETE, produces = "application/json")
+	public void delete(Long id) {
+		personWebService.delete(id);
+	}
 
 	@ExceptionHandler(Exception.class)
 	public void handle(HttpServletRequest request, Exception e) throws Exception {
