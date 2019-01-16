@@ -1,9 +1,11 @@
 package interview.challenge.people.web;
 
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Service;
 
 import interview.challenge.people.internal.Person;
 
+@Service("ConverterPersonDtoToPerson")
 public class ConverterPersonDtoToPerson implements Converter<PersonDto, Person> {
 
 	@Override
