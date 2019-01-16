@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface IPersoneDaoService {
 
-	public List<IPerson> getAll();
+	public List<Person> getAll();
 
 }

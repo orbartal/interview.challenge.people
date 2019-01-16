@@ -23,13 +23,13 @@ public class PersoneServiceTest {
 	@Test
 	public void testGetAll() throws Exception {
 		// setup
-		IPerson persone1 = new PersonBuilder().withId(768L).build();
-		IPerson persone2 = new PersonBuilder().withId(90L).build();
-		IPerson persone3 = new PersonBuilder().withId(947L).build();
-		List<IPerson> expected = Lists.newArrayList(persone1, persone2, persone3);
+		Person persone1 = new PersonBuilder().withId(768L).build();
+		Person persone2 = new PersonBuilder().withId(90L).build();
+		Person persone3 = new PersonBuilder().withId(947L).build();
+		List<Person> expected = Lists.newArrayList(persone1, persone2, persone3);
 		Mockito.when(personeDaoService.getAll()).thenReturn(expected);
 		// execute
-		List<IPerson> actual = personeService.getAll();
+		List<Person> actual = personeService.getAll();
 		// verify
 		Assert.assertEquals(expected, actual);
 	}
