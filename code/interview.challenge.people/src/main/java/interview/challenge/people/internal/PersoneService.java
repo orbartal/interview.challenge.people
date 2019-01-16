@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service("PersoneService")
-final public class PersoneService {
+public class PersoneService {
 
 	final private IPersoneDaoService personeDaoService;
 
