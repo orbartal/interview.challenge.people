@@ -34,4 +34,19 @@ public class PersonControllerTest {
 		Assert.assertEquals(expected, actual);
 	}
 
+	@Test
+	public void testCreate() throws Exception {
+		// setup
+		Long id = 976L;
+		String firstName = "Syed";
+		String lastName = "Saqib";
+		Integer age = 37;
+		PersonDto input = new PersonDtoBuilder().withId(id).withAge(age).withFirstName(firstName).withLastName(lastName)
+				.build();
+		// execute
+		fixure.create(input);
+		// verify
+		Mockito.verify(personWebService).create(input);
+	}
+
 }

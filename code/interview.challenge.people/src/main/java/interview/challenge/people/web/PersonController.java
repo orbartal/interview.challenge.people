@@ -23,7 +23,12 @@ public class PersonController {
 	public List<PersonDto> getAll() {
 		return personWebService.getAll();
 	}
-	
+
+	@RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
+	public void create(PersonDto input) {
+		personWebService.create(input);
+	}
+
 	@ExceptionHandler(Exception.class)
 	public void handle(HttpServletRequest request, Exception e) throws Exception {
 		throw e;
