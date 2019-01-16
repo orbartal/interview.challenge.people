@@ -30,6 +30,10 @@ public class PersonWebService {
 		Person person = toPerson(input);
 		personeService.create(person);
 	}
+	
+	public void delete(Long id) {
+		personeService.delete(id);
+	}
 
 	private PersonDto toPersonDto(Person source) {
 		return converterPersonToPersonDto.convert(source);

@@ -74,4 +74,11 @@ public class PersonWebServiceTest {
 		Mockito.verify(personeService).create(person);
 	}
 
+	@Test
+	public void testDelete() throws Exception {
+		Long id = 11L;
+		fixure.delete(id);
+		Mockito.verify(personeService).delete(id);
+	}
+
 }
