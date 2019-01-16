@@ -18,6 +18,7 @@ public class PersonService {
 	}
 	
 	public void create(Person person) {
+		person.setId(null); //We want to create a new person not to update an existing one.
 		personeDaoService.create(person);;
 	}
 

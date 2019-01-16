@@ -38,6 +38,7 @@ public class PersonServiceTest {
 	public void testCreate() throws Exception {
 		Person persone1 = new PersonBuilder().withId(768L).build();
 		personeService.create(persone1);
+		Assert.assertNull(persone1.getId());
 		Mockito.verify(personeDaoService).create(persone1);
 	}
 
