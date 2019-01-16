@@ -35,6 +35,10 @@ public class PersonDaoService implements IPersonDaoService {
 		PersonEntity entity = toPersonEntity(person);
 		personRepository.save(entity);
 	}
+	
+	public void delete(Long id) {
+		personRepository.delete(id);
+	}
 
 	private Person toPerson(PersonEntity source) {
 		return converterPersonEntityToPerson.convert(source);

@@ -73,6 +73,12 @@ public class PersonDaoServiceTest {
 		Mockito.verify(converterPersonToPersonEntity).convert(input);
 		Mockito.verify(personRepository).save(entity);
 	}
-
+	
+	@Test
+	public void testDelete() throws Exception {
+		Long id = 11L;
+		fixure.delete(id);
+		Mockito.verify(personRepository).delete(id);
+	}
 
 }
