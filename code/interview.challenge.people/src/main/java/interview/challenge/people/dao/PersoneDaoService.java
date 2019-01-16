@@ -15,6 +15,12 @@ public class PersoneDaoService implements IPersoneDaoService {
 	private PersonRepository personRepository;
 	private ConverterPersonEntityToPerson converterPersonEntityToPerson;
 
+	public PersoneDaoService(PersonRepository personRepository,
+			ConverterPersonEntityToPerson converterPersonEntityToPerson) {
+		this.personRepository = personRepository;
+		this.converterPersonEntityToPerson = converterPersonEntityToPerson;
+	}
+
 	@Override
 	public List<Person> getAll() {
 		List<PersonEntity> entites = Lists.newArrayList(personRepository.findAll());

@@ -13,6 +13,13 @@ public class PersonWebService {
 
 	private PersoneService personeService;
 	private ConverterPersonToPersonDto converterPersonToPersonDto;
+	
+	
+
+	public PersonWebService(PersoneService personeService, ConverterPersonToPersonDto converterPersonToPersonDto) {
+		this.personeService = personeService;
+		this.converterPersonToPersonDto = converterPersonToPersonDto;
+	}
 
 	public List<PersonDto> getAll() {
 		return personeService.getAll().stream().map(this::toPersonDto).collect(Collectors.toList());

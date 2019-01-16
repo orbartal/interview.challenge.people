@@ -15,6 +15,10 @@ public class PersonController {
 
 	private PersonWebService personWebService;
 
+	public PersonController(PersonWebService personWebService) {
+		this.personWebService = personWebService;
+	}
+
 	@RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json")
 	public List<PersonDto> getAll() {
 		return personWebService.getAll();
