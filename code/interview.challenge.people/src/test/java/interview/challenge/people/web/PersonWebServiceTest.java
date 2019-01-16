@@ -24,6 +24,9 @@ public class PersonWebServiceTest {
 	@Mock
 	private ConverterPersonToPersonDto converterPersonToPersonDto;
 
+	@Mock
+	private ConverterPersonDtoToPerson converterPersonDtoToPerson;
+
 	@InjectMocks
 	private PersonWebService fixure;
 
@@ -51,6 +54,24 @@ public class PersonWebServiceTest {
 		for (int i = 0; i < 3; i++) {
 			Mockito.verify(converterPersonToPersonDto).convert(people.get(i));
 		}
+	}
+
+	@Test
+	public void testCreate() throws Exception {
+		// setup
+		Long id = 976L;
+		String firstName = "Syed";
+		String lastName = "Saqib";
+		Integer age = 37;
+		Person person = new PersonBuilder().withAge(age).withFirstName(firstName).withLastName(lastName).build();
+		PersonDto input = new PersonDtoBuilder().withId(id).withAge(age).withFirstName(firstName).withLastName(lastName)
+				.build();
+		Mockito.when(converterPersonDtoToPerson.convert(input)).thenReturn(person);
+		// execute
+		fixure.create(input);
+		// verify
+		Mockito.verify(converterPersonDtoToPerson).convert(input);
+		Mockito.verify(personeService).create(person);
 	}
 
 }
