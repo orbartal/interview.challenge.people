@@ -36,6 +36,7 @@ public class PersonDaoService implements IPersonDaoService {
 		personRepository.save(entity);
 	}
 	
+	@Override
 	public void delete(Long id) {
 		personRepository.delete(id);
 	}
