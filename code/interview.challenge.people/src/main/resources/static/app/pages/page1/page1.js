@@ -11,6 +11,19 @@
 	    	 vm.getPeople();
 	     }
 	     
+	     vm.deletePersonById = function(id){
+	    	 PeopleService.deleteById(id).then(onSuccess, onFailure);
+		    	
+	    	 function onSuccess(data) { 
+        		 vm.lastError = undefined;
+        		 vm.getPeople();
+             }
+
+             function onFailure(error) {
+            	 vm.lastError = error;
+             }
+	     }
+	     
 	     vm.isValidInputPerson = function() {
 	    	 return (!!vm.temp && isValidAge(vm.temp.age) && isValidName(vm.temp.firstName) && isValidName(vm.temp.lastName));
 	    

@@ -58,7 +58,7 @@ describe('Testing PeopleService', function(){
         expect(actual.status).toEqual(500);
     });
  
-    it('PeopleService.getAll should return data when response is ok', function(){
+    it('PeopleService.create should return data when response is ok', function(){
     	var url = getBaseUrl ()+"/add";
     	var dataFromServer = "OK";
     	var responseFromServer = {"data": dataFromServer};
@@ -73,7 +73,7 @@ describe('Testing PeopleService', function(){
         expect(actualData).toEqual(dataFromServer)
     });
 
-    it('PeopleService.getAll should return data when response is error', function(){
+    it('PeopleService.create should return data when response is error', function(){
     	var url = getBaseUrl ()+"/add";
     	var person = {'firstName': 'ali', 'lastName': 'zaza', 'age':22};
     	var error = new Error('There has been an error!');
@@ -91,6 +91,41 @@ describe('Testing PeopleService', function(){
         expect(actual.status).toEqual(500);
  	});
     
+    it('PeopleService.deleteById should return data when response is ok', function(){
+    	var id = 97;
+    	var url = getBaseUrl ()+"/delete/"+id;
+    	var dataFromServer = id;
+    	var responseFromServer = {"data": dataFromServer};
+        $httpBackend.expectDELETE(url).respond(responseFromServer);
+        var deferredResponse =  PeopleService.deleteById(id);
+        var actualData = null;
+        deferredResponse.then(function(response){
+        	actualData = response.data;
+        });
+        $httpBackend.flush();
+        expect(actualData).toEqual(dataFromServer)
+    });
+    
+    it('PeopleService.deleteById should return data when response is error', function(){
+    	var id = 97;
+    	var url = getBaseUrl ()+"/delete/"+id;
+    	var dataFromServer = id;
+    	var responseFromServer = {"data": dataFromServer};
+    	var error = new Error('There has been an error!');
+        $httpBackend.expectDELETE(url).respond(500, error);
+        var deferredResponse =  PeopleService.deleteById(id);
+        var actual = null;
+        var onSuccess = function(data){
+    		actual = 'No error';
+    	};
+    	 var onFailure = function(error){
+             actual = error;
+        };
+        deferredResponse.then(onSuccess,onFailure);
+        $httpBackend.flush();
+        expect(actual.status).toEqual(500);
+    });
+
     function getPeople() {
 		var p1 = {'id': 1, 'firstName': 'ali', 'lastName': 'zaza', 'age':22};
 		var p2 = {'id': 2, 'firstName': 'carl', 'lastName': 'bar', 'age':76};

@@ -125,6 +125,80 @@ describe('Testing PeopleCtrl', function () {
 		    expect(fixture.people.length).toBe(expectPeople1.length);
 		    expect(fixture.lastError).toBe(expectedErrorMessage);
 		});
+	
+	 it('PeopleCtrl should use PeopleService delete and getAll when resolve promise on delete', function () {
+			// We use the $q service to create a mock instance of defer
+			var deferreds = [$q.defer(), $q.defer(), $q.defer()];
+			var calls = [];
+			// Use a Jasmine Spy to return the deferred promise
+			spyOn(peopleService, 'getAll').and.callFake(function() {
+		  		var deferred = deferreds[calls.length];
+		  		calls.push("getAll");
+		  	    return  deferred.promise;
+		  	});
+			spyOn(peopleService, 'deleteById').and.callFake(function() {
+		  		var deferred = deferreds[calls.length];
+		  		calls.push("deletePersonById");
+		  	    return  deferred.promise;
+		  	});
+			var fixture = $controller('PeopleCtrl', { 
+			      $scope: $scope, 
+			      PeopleService: peopleService
+			});
+			
+			var expectPeople1 = getPeople();
+			var expectPeople2 = getPeople();
+			var person = expectPeople2.shift();
+		    deferreds[0].resolve(expectPeople1);
+		    deferreds[1].resolve("");
+		    deferreds[2].resolve(expectPeople2);
+		    fixture.deletePersonById(person.id);
+		    $scope.$apply();
+		    expect(calls.length).toBe(3);
+		    expect(calls[0]).toBe("getAll");
+		    expect(calls[1]).toBe("deletePersonById");
+		    expect(calls[2]).toBe("getAll");
+		    expect(fixture.people.length).toBe(expectPeople2.length);
+		    expect(fixture.lastError).toBe(undefined);
+		});
+	 
+	 
+	 it('PeopleCtrl should use PeopleService delete and getAll when reject promise on delete', function () {
+			// We use the $q service to create a mock instance of defer
+			var deferreds = [$q.defer(), $q.defer(), $q.defer()];
+			var calls = [];
+			// Use a Jasmine Spy to return the deferred promise
+			spyOn(peopleService, 'getAll').and.callFake(function() {
+		  		var deferred = deferreds[calls.length];
+		  		calls.push("getAll");
+		  	    return  deferred.promise;
+		  	});
+			spyOn(peopleService, 'deleteById').and.callFake(function() {
+		  		var deferred = deferreds[calls.length];
+		  		calls.push("deletePersonById");
+		  	    return  deferred.promise;
+		  	});
+			var fixture = $controller('PeopleCtrl', { 
+			      $scope: $scope, 
+			      PeopleService: peopleService
+			});
+			
+			var expectPeople1 = getPeople();
+			var expectPeople2 = getPeople();
+			var person = expectPeople2.shift();
+		    deferreds[0].resolve(expectPeople1);
+		    var expectedErrorMessage = new Error('There has been an error!');
+		    deferreds[1].reject(expectedErrorMessage);
+		    deferreds[2].resolve(expectPeople2);
+		    fixture.deletePersonById(person.id);
+		    $scope.$apply();
+		    expect(calls.length).toBe(2);
+		    expect(calls[0]).toBe("getAll");
+		    expect(calls[1]).toBe("deletePersonById");
+		    expect(fixture.people.length).toBe(expectPeople1.length);
+		    expect(fixture.lastError).toBe(expectedErrorMessage);
+		});
+
 
 	function getPeople() {
 			var p1 = {'id': 1, 'firstName': 'ali', 'lastName': 'zaza', 'age':22};

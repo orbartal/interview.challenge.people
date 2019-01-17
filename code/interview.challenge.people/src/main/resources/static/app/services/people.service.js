@@ -5,6 +5,7 @@
         var service = {};
         service.getAll = getAllPeople;
         service.create = createPerson;
+        service.deleteById = deletePersonById;
         return service;
 
         //public methods
@@ -16,6 +17,11 @@
         function createPerson(person) {
             var url = getBaseUrl () + "/add";
             return $http.post(url, person).then(onSuccess, onFailure);
+        }
+        
+        function deletePersonById(id) {
+            var url = getBaseUrl ()+"/delete/"+id;
+            return $http.delete(url).then(onSuccess, onFailure);
         }
 
         //private functions
