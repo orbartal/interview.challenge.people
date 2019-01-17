@@ -10,5 +10,9 @@
 			templateUrl: 'app/pages/page1/page1.html',
 			controller: 'PeopleCtrl as vm'
 		})
+		.when("/page2", {
+			templateUrl: 'app/pages/page2/page2.html',
+			controller: 'PieChartCtrl as vm'
+		})
 	});
 })();

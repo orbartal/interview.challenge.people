@@ -1,0 +1,15 @@
+<h3>Pie Chart</h3>
+<div class="row">
+  <div class='col-xs-12'>
+    <div ng-repeat="item in vm.data">
+      {{item.name}} : {{item.value}}
+      <br />
+      <input type="range" name="volume" min="0" max="100" ng-model="item.value" value="{{item.value}}" />
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-6">
+    <div pie-chart-directive="" style="width:100%;height:460px;" data="vm.data"></div> -->
+  </div>
+</div>
