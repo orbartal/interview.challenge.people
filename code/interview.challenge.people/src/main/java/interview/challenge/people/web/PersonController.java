@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,11 +31,13 @@ public class PersonController {
 		personWebService.create(input);
 	}
 	
-	@RequestMapping(value = "/delete ", method = RequestMethod.DELETE, produces = "application/json")
-	public void delete(Long id) {
+	//https://stackoverflow.com/questions/25375046/passing-data-in-the-body-of-a-delete-request
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = "application/json")
+	public Long delete(@PathVariable("id") Long id) {
 		personWebService.delete(id);
+		return id;
 	}
-
+	
 	@ExceptionHandler(Exception.class)
 	public void handle(HttpServletRequest request, Exception e) throws Exception {
 		throw e;
