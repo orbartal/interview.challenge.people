@@ -1,1 +1,19 @@
-<p>This is the partial for view 1.</p>
+<h3>people</h3>
+<table border="1">
+	<thead>
+    <tr>
+      <th>Id</th>
+      <th>Age</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+    </tr>
+  </thead>
+  <tbody>
+  	 <tr ng-repeat="person in vm.people | orderBy:['firstName','lastName']">
+        <td>{{person.id}}</td>
+       <td>{{person.age}}</td>
+       <td>{{person.firstName}}</td>
+       <td>{{person.lastName}}</td>
+    </tr>
+  </tbody>
+</table>

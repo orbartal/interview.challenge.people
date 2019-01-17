@@ -1,14 +1,30 @@
-'use strict';
+(function () {
+    'use strict';
 
-angular.module('myApp.page1', ['ngRoute'])
+    function PeopleCtrl(PeopleService) {
+    	 var vm = this;
+	     vm.people = [];
+	     vm.lastError= undefined;
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/page1', {
-    templateUrl: 'page1/page1.html',
-    controller: 'Page1Ctrl'
-  });
-}])
+	     vm.getAll = function() {
+	    	 PeopleService.getAll().then(onSuccess, onFailure);
+        	
+        	 function onSuccess(data) { 
+        		 vm.people = data;
+        		 vm.lastError = undefined;
+             }
 
-.controller('Page1Ctrl', [function() {
-
-}]);
+             function onFailure(error) {
+            	 vm.people = [];
+            	 vm.lastError = error;
+             }
+        }
+	     
+	    vm.getAll();
+    }
+    
+    var app = angular.module('myApp');
+    PeopleCtrl.$inject = ['PeopleService'];
+    app.controller('PeopleCtrl', PeopleCtrl);
+    
+})();

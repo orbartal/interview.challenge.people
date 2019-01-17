@@ -2,13 +2,15 @@
 module.exports = function(config) {
   config.set({
 
-    basePath: './app',
+    basePath: '.',
 
     files: [
-      'lib/angular/angular.js',
-      'lib/angular-route/angular-route.js',
-      '../node_modules/angular-mocks/angular-mocks.js',
-      'pages/**/*.js'
+      './app/lib/angular/angular.js',
+      './app/lib/angular-route/angular-route.js',
+      './node_modules/angular-mocks/angular-mocks.js',
+      './app/*.js',
+      './app/services/*.js',
+      './app/pages/page1/*.js'
     ],
 
     autoWatch: true,
@@ -22,6 +24,7 @@ module.exports = function(config) {
       'karma-firefox-launcher',
       'karma-jasmine'
     ]
+
 
   });
 };
