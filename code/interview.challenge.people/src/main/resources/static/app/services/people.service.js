@@ -4,13 +4,18 @@
     function PeopleService($http) {
         var service = {};
         service.getAll = getAllPeople;
+        service.create = createPerson;
         return service;
 
         //public methods
         function getAllPeople() {
-        	console.log('PeopleService getAllPeople');
             var url = getBaseUrl ()+"/list";
             return $http.get(url).then(onSuccess, onFailure);
+        }
+        
+        function createPerson(person) {
+            var url = getBaseUrl () + "/add";
+            return $http.post(url, person).then(onSuccess, onFailure);
         }
 
         //private functions

@@ -1,4 +1,5 @@
 <h3>people</h3>
+<p ng-if="!!vm.lastError">{{vm.lastError}}</p>
 <table border="1">
 	<thead>
     <tr>
@@ -17,3 +18,34 @@
     </tr>
   </tbody>
 </table>
+
+<div>
+	<h4>Add new person</h4>
+	<p>{{vm.temp}}</p>
+	<form class="form-horizontal" >
+		<div class="form-group">
+			<label for="firstName" class="col-sm-3 control-label">First Name:</label>
+			<div class="col-sm-9">
+				<input id="firstName" ng-model="vm.temp.firstName" type="text" class="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="lastName" class="col-sm-3 control-label">Last Name:</label>
+			<div class="col-sm-9">
+				<input id="lastName" ng-model="vm.temp.lastName" type="text" class="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="lastName" class="col-sm-3 control-label">Age:</label>
+			<div class="col-sm-9">
+				<input type="number" name="age" ng-model="vm.temp.age" min="18" max="120" class="form-control">
+			</div>
+		</div>
+		<br>
+		<div class="form-group">
+			<div class="col-sm-9 col-sm-offset-3">
+				<input type="submit" value="Create" class="btn btn-primary" ng-click="vm.createPerson()" ng-disabled="!vm.isValidInputPerson()"/>
+			</div>
+		</div>
+	</form>
+</div>
